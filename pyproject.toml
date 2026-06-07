@@ -1,0 +1,36 @@
+[build-system]
+requires = ["setuptools>=61", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "files-translator"
+version = "0.1.0"
+description = "DOCX preserve-list extraction via hybrid spaCy NER"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "spacy>=3.7,<4",
+    "datasets>=2.14",
+    "huggingface-hub>=0.20",
+    "python-docx>=1.1",
+    "fastapi>=0.109",
+    "uvicorn[standard]>=0.27",
+    "python-multipart>=0.0.6",
+    "langdetect>=1.0.9",
+    "tqdm>=4.66",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.4",
+]
+
+[project.scripts]
+files-translator-preserve = "files_translator.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
