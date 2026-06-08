@@ -3,7 +3,7 @@ from files_translator.ner.merge import EntitySpan, merge_entities
 
 def test_keeps_non_overlapping_pretrained():
     tech = [
-        EntitySpan("Python", "Language", "stackoverflow-ner", 7, 13),
+        EntitySpan("Python", "PROPRIETARY_TECHNOLOGY", "complex-ner", 7, 13),
     ]
     pre = [
         EntitySpan("Acme Corp", "ORG", "spacy-pretrained", 17, 26),
@@ -15,23 +15,23 @@ def test_keeps_non_overlapping_pretrained():
 
 def test_prefers_tech_on_overlap():
     tech = [
-        EntitySpan("SQL Fiddle", "Application", "stackoverflow-ner", 0, 10),
+        EntitySpan("Microsoft Azure", "ORGANIZATION", "complex-ner", 0, 15),
     ]
     pre = [
-        EntitySpan("SQL", "ORG", "spacy-pretrained", 0, 3),
+        EntitySpan("Microsoft", "ORG", "spacy-pretrained", 0, 9),
     ]
     merged = merge_entities(tech, pre)
     assert len(merged) == 1
-    assert merged[0].label == "Application"
+    assert merged[0].label == "ORGANIZATION"
 
 
-def test_drops_user_name():
+def test_drops_username():
     tech = [
-        EntitySpan("@KamranFarzami", "User_Name", "stackoverflow-ner", 0, 15),
+        EntitySpan("@kamran", "USERNAME", "complex-ner", 0, 7),
     ]
     pre = [
-        EntitySpan("KamranFarzami", "PERSON", "spacy-pretrained", 1, 14),
+        EntitySpan("kamran", "PERSON", "spacy-pretrained", 1, 7),
     ]
     merged = merge_entities(tech, pre)
     assert any(m.label == "PERSON" for m in merged)
-    assert not any(m.label == "User_Name" for m in merged)
+    assert not any(m.label == "USERNAME" for m in merged)

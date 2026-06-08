@@ -15,7 +15,7 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--output", "-o", help="Write JSON here (default: stdout)")
     parser.add_argument(
         "--tech-model",
-        default=os.environ.get("TECH_NER_MODEL_PATH", "models/stackoverflow-ner"),
+        default=os.environ.get("TECH_NER_MODEL_PATH", "models/complex-ner"),
     )
     parser.add_argument(
         "--en-model",

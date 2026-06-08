@@ -1,4 +1,4 @@
-"""Custom stackoverflow-ner spaCy model."""
+"""Custom complex_ner spaCy model."""
 
 from __future__ import annotations
 
@@ -14,8 +14,8 @@ def load_tech_model(model_path: str | Path) -> Language:
     path = Path(model_path)
     if not path.exists():
         raise FileNotFoundError(
-            f"Tech NER model not found at {path}. "
-            "Run scripts/convert_hf_to_spacy.py and scripts/train_stackoverflow_ner.py first."
+            f"Custom NER model not found at {path}. "
+            "Run scripts/convert_hf_to_spacy.py and scripts/train_complex_ner.py first."
         )
     return spacy.load(path)
 
@@ -26,7 +26,7 @@ def extract_tech_entities(nlp: Language, text: str) -> list[EntitySpan]:
         EntitySpan(
             text=ent.text,
             label=ent.label_,
-            source="stackoverflow-ner",
+            source="complex-ner",
             start_char=ent.start_char,
             end_char=ent.end_char,
         )

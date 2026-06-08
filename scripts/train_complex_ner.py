@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Train custom stackoverflow NER and write models/stackoverflow-ner/."""
+"""Train custom complex_ner model and write models/complex-ner/."""
 
 from __future__ import annotations
 
@@ -8,9 +8,9 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-CONFIG = ROOT / "configs" / "stackoverflow_ner.cfg"
+CONFIG = ROOT / "configs" / "complex_ner.cfg"
 TRAIN_DATA = ROOT / "data" / "train.spacy"
-OUTPUT_DIR = ROOT / "models" / "stackoverflow-ner"
+OUTPUT_DIR = ROOT / "models" / "complex-ner"
 
 
 def main() -> None:
@@ -35,7 +35,6 @@ def main() -> None:
     print("Running:", " ".join(cmd))
     subprocess.run(cmd, cwd=ROOT / "configs", check=True)
 
-    # spaCy writes to output/model.last; copy best if present
     best = OUTPUT_DIR / "model-best"
     model_last = OUTPUT_DIR / "model-last"
     if best.exists():

@@ -29,7 +29,7 @@ def _get_builder() -> PreserveListBuilder:
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     global _builder
-    tech_path = os.environ.get("TECH_NER_MODEL_PATH", "models/stackoverflow-ner")
+    tech_path = os.environ.get("TECH_NER_MODEL_PATH", "models/complex-ner")
     en_model = os.environ.get("SPACY_EN_MODEL", "en_core_web_sm")
     he_model = os.environ.get("SPACY_HE_MODEL", "xx_ent_wiki_sm")
 

@@ -83,7 +83,7 @@ def _normalize_key(text: str) -> str:
 
 
 def load_builder(
-    tech_model_path: str | Path = "models/stackoverflow-ner",
+    tech_model_path: str | Path = "models/complex-ner",
     en_model: str = "en_core_web_sm",
     he_model: str = "xx_ent_wiki_sm",
 ) -> PreserveListBuilder:

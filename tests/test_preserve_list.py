@@ -35,4 +35,9 @@ def test_preserve_list_smoke(sample_docx_path, tech_model_path, pretrained_model
 
     assert "Python" in texts or any("Python" in t for t in texts)
     assert len(result["preserve_terms"]) >= 2
-    assert "ORG" in labels or "Language" in labels or "Application" in labels
+    assert (
+        "ORG" in labels
+        or "ORGANIZATION" in labels
+        or "PROPRIETARY_TECHNOLOGY" in labels
+        or "CODE_RELATED" in labels
+    )

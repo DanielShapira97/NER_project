@@ -14,19 +14,21 @@ python -m spacy download xx_ent_wiki_sm
 
 `xx_ent_wiki_sm` is the multilingual NER fallback for Hebrew (`he_core_news_sm` is not published for spaCy 3.8). Override with `SPACY_HE_MODEL` if you install another Hebrew pipeline (e.g. `he_ner_news_trf`).
 
-## Train custom tech NER (stackoverflow-ner)
+## Train custom NER (MorryShah/complex_ner)
+
+Dataset: [MorryShah/complex_ner](https://huggingface.co/datasets/MorryShah/complex_ner) — business, legal, and software entities.
 
 ```bash
 python scripts/convert_hf_to_spacy.py
-python scripts/train_stackoverflow_ner.py
+python scripts/train_complex_ner.py
 ```
 
 Outputs:
 
 - `data/train.spacy`, `data/dev.spacy` — converted dataset
-- `models/stackoverflow-ner/` — trained model
+- `models/complex-ner/` — trained model
 
-Set `TECH_NER_MODEL_PATH=models/stackoverflow-ner` (default) before running the API or CLI.
+Set `TECH_NER_MODEL_PATH=models/complex-ner` (default) before running the API or CLI.
 
 ## CLI
 
@@ -46,7 +48,7 @@ Environment variables (optional):
 
 | Variable | Default |
 |----------|---------|
-| `TECH_NER_MODEL_PATH` | `models/stackoverflow-ner` |
+| `TECH_NER_MODEL_PATH` | `models/complex-ner` |
 | `SPACY_EN_MODEL` | `en_core_web_sm` |
 | `SPACY_HE_MODEL` | `xx_ent_wiki_sm` |
 
@@ -58,10 +60,10 @@ Environment variables (optional):
   "paragraph_count": 12,
   "preserve_terms": [
     {
-      "text": "Python",
-      "label": "Language",
-      "source": "stackoverflow-ner",
-      "occurrences": [{"paragraph_index": 0, "start_char": 7, "end_char": 13}]
+      "text": "GenTech Solutions",
+      "label": "ORGANIZATION",
+      "source": "complex-ner",
+      "occurrences": [{"paragraph_index": 0, "start_char": 7, "end_char": 22}]
     }
   ]
 }
@@ -70,5 +72,5 @@ Environment variables (optional):
 ## Limitations (this milestone)
 
 - Paragraph text only (no tables, headers/footers, or text boxes).
-- Custom NER is English-trained (Stack Overflow); Hebrew docs use `xx_ent_wiki_sm` (or `SPACY_HE_MODEL`) for ORG/PERSON/PRODUCT.
+- Custom NER is English-trained on complex_ner; Hebrew docs use `xx_ent_wiki_sm` (or `SPACY_HE_MODEL`) for ORG/PERSON/PRODUCT.
 - Translation, RTL, and design preservation are not implemented yet.

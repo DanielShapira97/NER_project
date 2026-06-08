@@ -39,7 +39,7 @@ def merge_entities(
     """
     Combine tech and pretrained spans.
 
-    When overlap >= 50% of the shorter span, prefer tech unless label is User_Name.
+    When overlap >= 50% of the shorter span, prefer tech unless label is excluded.
     """
     tech_kept = [s for s in tech_spans if s.label not in TECH_EXCLUDED_LABELS]
     result = list(tech_kept)

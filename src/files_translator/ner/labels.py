@@ -9,5 +9,26 @@ PRETRAINED_LABEL_ALIASES: dict[str, str] = {
     "MISC": "PRODUCT",
 }
 
-# Stack Overflow usernames are noisy in business documents.
-TECH_EXCLUDED_LABELS = frozenset({"User_Name"})
+# complex_ner labels excluded from the preserve list (PII/temporal/noise for translation).
+TECH_EXCLUDED_LABELS = frozenset({
+    "USERNAME",
+    "TEMPORAL_TIME_DATE",
+    "ADDRESS",
+    "ID_NUMBER",
+    "CONTACT_INFO",
+    "PASSWORD_OR_KEY",
+    "BANK_OR_FINANCIAL_ACCOUNT",
+    "HEALTH",
+    "DEVICE_ID",
+    "CRIMINAL",
+    "RACIAL_ETHNIC",
+    "POLITICAL",
+    "RELIGIOUS",
+    "SEXUAL_ORIENTATION",
+    "BEHAVIORAL",
+    "SERVER_IP_ADDRESS",
+    "FINANCIAL",
+    "NUMBER",
+    "CURRENCY",
+    "COMMUNICATION",
+})

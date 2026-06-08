@@ -15,5 +15,5 @@ def resolve_tech_model_path(base_path: str | Path) -> Path:
     if (root / "meta.json").exists():
         return root
     raise FileNotFoundError(
-        f"No tech NER model at {base_path}. Train with scripts/train_stackoverflow_ner.py."
+        f"No custom NER model at {base_path}. Train with scripts/train_complex_ner.py."
     )

@@ -21,11 +21,11 @@ def sample_docx_path() -> Path:
 
 @pytest.fixture(scope="session")
 def tech_model_path():
-    root = Path(__file__).resolve().parents[1] / "models" / "stackoverflow-ner"
+    root = Path(__file__).resolve().parents[1] / "models" / "complex-ner"
     for name in ("model-best", "model-last"):
         candidate = root / name
         if candidate.exists():
             return candidate
     if root.exists() and (root / "meta.json").exists():
         return root
-    pytest.skip("Tech NER model not trained; run scripts/train_stackoverflow_ner.py")
+    pytest.skip("Custom NER model not trained; run scripts/train_complex_ner.py")
